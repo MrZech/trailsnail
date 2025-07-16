@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bind_param("ssiss", $employee, $newStatus, $timestamp, $notes, $ipAddress);
                 if ($stmt->execute()) {
                     // Redirect with success message in URL
-                    header("Location: " . $_SERVER['SCRIPT_NAME'] . "?success=" . urlencode($message));
+                    header("Location: ./timeclock.php?success=" . urlencode($message));
                     exit;
                 } else {
                     $errorMessage = "Error: " . $conn->error;
@@ -324,7 +324,7 @@ window.onload = () => {
         </div>
 
         <!-- Manual Punch Form -->
-        <form method="POST" id="punchForm">
+        <form method="POST" action="timeclock.php" id="punchForm">
           <div class="mb-3">
             <label for="employee" class="form-label">Select Employee:</label>
             <select name="employee" id="employee" class="form-select form-select-lg" required>
