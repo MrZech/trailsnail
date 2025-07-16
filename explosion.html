@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zech was Here :]</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .word {
+      position: absolute;
+      font-size: 2rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    h1 {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 3rem;
+      opacity: 0.5;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+
+<h1>3... 2... 1...</h1>
+
+<script>
+  const words = [
+    "BOOM!", "KABOOM!", "BLAST!", "BANG!", "BOOM!", "💥", "🔥", "⚡", "💣", "💨",
+    "SHOCKWAVE!", "CRASH!", "BOOOOOOM!", "WHAM!", "ZAP!", "POW!", "BOOM!", "KABOOM!", "BLAST!", "BANG!", "BOOM!", "💥", "🔥", "⚡", "💣", "💨",
+    "SHOCKWAVE!", "CRASH!", "BOOOOOOM!", "WHAM!", "ZAP!", "POW!"
+  ];
+
+  const wordElements = [];
+
+  // Spawn words in center
+  words.forEach(text => {
+    const el = document.createElement('div');
+    el.className = 'word';
+    el.textContent = text;
+
+    document.body.appendChild(el);
+
+    const rect = el.getBoundingClientRect();
+    const startX = window.innerWidth / 2 - rect.width / 2;
+    const startY = window.innerHeight / 2 - rect.height / 2;
+
+    // Set initial position
+    el.style.left = startX + 'px';
+    el.style.top = startY + 'px';
+
+    wordElements.push({
+      el,
+      x: startX,
+      y: startY,
+      dx: (Math.random() - 1.0) * 8, // X velocity
+      dy: (Math.random() - 0.5) * 8  // Y velocity
+    });
+  });
+
+  // After 3 seconds, reveal and animate
+  setTimeout(() => {
+    document.querySelector('h1').remove(); // remove countdown
+
+    wordElements.forEach(w => {
+      w.el.style.opacity = 1;
+    });
+
+    animate();
+  }, 3000);
+
+  function animate() {
+    wordElements.forEach(w => {
+      const rect = w.el.getBoundingClientRect();
+
+      // Bounce off edges
+      if (w.x <= 0 || w.x + rect.width >= window.innerWidth) {
+        w.dx *= -1;
+      }
+      if (w.y <= 0 || w.y + rect.height >= window.innerHeight) {
+        w.dy *= -1;
+      }
+
+      // Update position
+      w.x += w.dx;
+      w.y += w.dy;
+
+      w.el.style.left = w.x + 'px';
+      w.el.style.top = w.y + 'px';
+    });
+
+    requestAnimationFrame(animate);
+  }
+</script>
+
+</body>
+</html>
