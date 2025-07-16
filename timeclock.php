@@ -73,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->bind_param("ssiss", $employee, $newStatus, $timestamp, $notes, $ipAddress);
                 if ($stmt->execute()) {
                     // Redirect with success message in URL
-                    header("Location: /timeclock.php?success=" . urlencode($message));
+                    $message = "Punch '$newStatus' recorded for $employee.";
+header("Location: ../timeclock.php?success=" . urlencode($message));
                     exit;
                 } else {
                     $errorMessage = "Error: " . $conn->error;
