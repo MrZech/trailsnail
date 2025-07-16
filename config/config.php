@@ -1,12 +1,18 @@
 <?php
 // config.php
-date_default_timezone_set('America/Chicago'); // Example: 'America/New_York'
-// Replace 'YOUR_TIMEZONE' with your desired timezone (e.g., Europe/Stockholm, America/New_York, etc.). Refer to the PHP timezone list for valid options.
+date_default_timezone_set('America/Chicago');
 
-$host = 'localhost'; // Update with your host
-$user = 'root'; // Update with your database username
-$password = ''; // Update with your database password
-$dbname = 'timeclock'; // Update with your database name
+// Pull in from Docker environment, falling back to sensible defaults:
+$host     = getenv('DB_HOST') ?: 'db';                 // service name in compose
+$user     = getenv('DB_USER') ?: 'timeclockuser';      // as set in your compose
+$password = getenv('DB_PASS') ?: 'timeclockpass';      // as set in your compose
+$dbname   = getenv('DB_NAME') ?: 'timeclock';          // as set in your compose
+
+// If you prefer hard‑coding, just do:
+// $host = 'db';
+// $user = 'timeclockuser';
+// $password = 'timeclockpass';
+// $dbname = 'timeclock';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 
