@@ -63,7 +63,8 @@ if ($conn->connect_error) {
 </head>
 <body>
 <div class="position-absolute top-0 end-0 m-3">
-  <a href="timeclock.php" class="btn btn-outline-light btn-sm">Return to Timeclock</a>
+  <a href="timeclock.php" class="btn btn-outline-light btn-sm">Return to Employee Timeclock</a>
+  <a href="volunteerclock.php" class="btn btn-outline-light btn-sm">Return to Volunteer Clock</a>
 </div>
   <div class="container py-5">
     <div class="row mb-4">
@@ -96,7 +97,7 @@ if ($conn->connect_error) {
           <div class="content">
             <?php
             $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
-            $allowed_pages = ['dashboard', 'fix_punches', 'edit_punches', 'edit_punch', 'manage_users', 'report', 'add_employee', 'edit_employee'];
+            $allowed_pages = ['dashboard', 'fix_punches', 'edit_punches', 'edit_punch', 'manage_users', 'report', 'add_employee', 'edit_employee', 'volunteer', 'volunteer_report'];
             if (in_array($page, $allowed_pages)) {
               include "admin_$page.php";
             } else {

@@ -285,6 +285,7 @@ window.onload = () => {
 <div class="container py-5 position-relative">
 
   <div class="position-absolute top-0 end-0 m-3">
+    <a href="volunteerclock.php" class="btn btn-outline-light btn-sm">Volunteer Clock</a>
     <a href="admin_login.php" class="btn btn-outline-light btn-sm dashboard-link" title="Admin Login">
       <i class="bi bi-shield-lock"></i> Admin
     </a>
