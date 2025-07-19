@@ -90,6 +90,7 @@ if ($conn->connect_error) {
             <a href="?page=manage_users" class="list-group-item list-group-item-action">👥 Manage Employees</a>
             <a href="?page=add_employee" class="list-group-item list-group-item-action">➕ Add Employee</a>
             <a href="?page=report" class="list-group-item list-group-item-action">📊 Generate Reports</a>
+            <a href="?page=volunteer" class="list-group-item list-group-item-action">Generate Volunteer Reports</a>
             <a href="admin_login.php" class="list-group-item list-group-item-action text-danger">🚪 Logout</a>
           </div>
           <div class="content">
